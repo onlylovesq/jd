@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width:300px;
+            height: 300px;
+            position: absolute;
+            top:0;
+            left:50%;
+            transform: translateX(-50%);
+            background-color: orange;
+            overflow: hidden;
+        }
+
+        .box > ul:first-child {
+            list-style: none;
+            width:1000%;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-10%);;
+        }
+
+        .box > ul:first-child > li{
+            width:10%;
+            float:left;
+        }
+
+        .box > ul:first-child > li > div{
+            width:300px;
+            height: 300px;
+            background-color: pink;
+            text-align: center;
+            font-weight: 600;
+            font-size: 100px;
+            line-height: 300px;
+        }
+
+        .box > ul:last-child {
+            position: absolute;
+            bottom: 20px;
+            left:50%;
+            transform: translateX(-50%);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box > ul:last-child  li {
+            float:left;
+            width:10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            background-color: transparent;
+            margin-left:10px;
+        }
+
+        .box > ul:last-child  li.active {
+            background-color: #fff;
+        }
+
+
+    </style>
+    <script>
+        window.onload = function(){
+            slider();
+        }
+
+        function slider(){
+            var index = 1;
+            var box = document.querySelector('.box');
+            var boxUl = document.querySelector('.box > ul:first-child');
+            var boxWidth = box.offsetWidth;
+            var timer;
+            var startX = 0;
+            var endX = 0;
+            var moveX = 0;
+            var distanceX = 0;
+            function timerr(){
+                timer = setInterval(function(){
+                    index++;
+                    addTransition(boxUl);
+                    addTransform(boxUl,-boxWidth*index);
+                },1000);
+            }
+
+            timerr();
+
+            boxUl.addEventListener('transitionend',function(e){
+                if(index >= 7){
+                    index = 1;
+                    removeTransition(boxUl);
+                    addTransform(boxUl,-boxWidth*index);
+                }else if(index <= 0){
+                    index = 6;
+                    removeTransition(boxUl);
+                    addTransform(boxUl,-boxWidth*index);
+                }
+
+                setPoints(index);
+            });
+
+            boxUl.addEventListener('touchstart',function(e){
+                clearInterval(timer);
+                startX = e.touches[0].clientX;
+            });
+
+            boxUl.addEventListener('touchend',function(e){
+                clearInterval(timer);
+                endX = e.changedTouches[0].clientX;
+                if(endX-startX > 0 && Math.abs(endX-startX) > boxWidth/3){
+                    index--;
+                }else if(endX - startX < 0 && Math.abs(endX-startX) > boxWidth/3){
+                    index++;
+                }
+                addTransition(boxUl);
+                addTransform(boxUl,-boxWidth*index);
+                timerr();
+            });
+
+            boxUl.addEventListener('touchmove',function(e){
+                moveX = e.touches[0].clientX;
+                distanceX = moveX-startX;
+                addTransition(boxUl);
+                addTransform(boxUl,-boxWidth*index + distanceX);
+            });
+
+        }
+
+        function setPoints(index){
+            var boxLi = document.querySelectorAll('.box > ul:last-child  li');
+            for(var i = 0; i < boxLi.length; i++){
+                boxLi[i].className = "";
+            }
+            boxLi[index-1].className = "active";
+        }
+
+        function addTransform(obj,x){
+            obj.style.transform = "translateX("+x+"px)";
+        }
+
+        function addTransition(obj){
+            obj.style.transition = "all 0.5s";
+        }
+
+        function removeTransition(obj){
+            obj.style.transition = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <div>6</div>
+            </li>
+            <li>
+                <div>1</div>
+            </li>
+            <li>
+                <div>2</div>
+            </li>
+            <li>
+                <div>3</div>
+            </li>
+            <li>
+                <div>4</div>
+            </li>
+            <li>
+                <div>5</div>
+            </li>
+            <li>
+                <div>6</div>
+            </li>
+            <li>
+                <div>1</div>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="active">
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

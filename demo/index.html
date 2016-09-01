@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: #e92322;
+        }
+
+        .box1{
+            width:100%;
+            height: 40px;
+            background-color: green;
+            /*脱离文档流 占位置*/
+            /*position: relative; */
+            /*不占位置 脱离文档流*/
+            position: fixed;
+            top:0;
+            min-width: 320px;
+            max-width: 640px;
+            /*position: absolute;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+
+        </div>
+    </div>
+</body>
+</html>

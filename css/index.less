@@ -1,0 +1,201 @@
+#layout {
+    min-width: 320px;
+    max-width: 640px;
+    height: 200px;
+    width:100%;
+    margin:0 auto;
+    > #header {
+      width:100%;
+      > .topbar {
+        position: fixed;
+        min-width: 320px;
+        max-width: 640px;
+        height: 40px;
+        width:100%;
+        top:0;
+        z-index: 1;
+        > .icon-logo{
+           background-image: url(../img/sprites.png);
+           background-size: 200px 200px;
+           width:60px;
+           height:40px;
+           background-position: 0px -103px;
+           position: absolute;
+           left:5px;
+        }
+        > form {
+          width:100%;
+          position: relative;
+          padding:5px 50px 0 70px;
+          > .icon-search {
+            background-image: url(../img/sprites.png);
+            background-size: 200px 200px;
+            width:20px;
+            height: 20px;
+            background-position: -60px -109px;
+            position: absolute;
+            top:10px;
+            left:75px;
+          }
+          > input{
+            width:100%;
+            height: 30px;
+            border-radius: 15px;
+            padding-left: 25px;
+          }
+        }
+        > .login {
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          top:10px;
+          right:5px;
+          color:#ccc;
+        }
+      }
+    }
+
+  #slider {
+    position: relative;
+    overflow: hidden;
+    > ul:first-child {
+      width:1000%;
+      transform: translateX(-10%);
+      > li {
+        float:left;
+        width:10%;
+        > a > img {
+          width:100%;
+        }
+      }
+    }
+    > ul:last-child {
+      position: absolute;
+      bottom: 10px;
+      left:50%;
+      margin-left:-60px;
+      > li {
+        width:6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-left: 10px;
+        float:left;
+        border: 1px solid #fff;
+      }
+      > li.active {
+        background-color: #fff;
+      }
+    }
+  }
+  #category {
+    padding:5px 0;
+    border-bottom: 1px solid #ccc;
+    > ul > li{
+        width:25%;
+        float:left;
+         > a > img {
+           width:60%;
+           margin:0 auto;
+           display: block;
+           margin-top:5px;
+         }
+         > a > p{
+            font-size: 12px;
+            text-align: center;
+            margin-top:5px;
+         }
+    }
+  }
+
+  #main{
+     padding:10px 5px;
+     background-color: #f0f0f0;
+     > .product {
+       margin-top:10px;
+       background-color: #fff;
+       > .product-title{
+         border-bottom: 1px solid #ccc;
+         >h3 {
+           font-weight: normal;
+           color:#666;
+           margin-left:10px;
+           padding-left:15px;
+           position: relative;
+         }
+         >h3::after{
+           content: '';
+           width:4px;
+           height:15px;
+           background-color: #e92322;
+           position: absolute;
+           top:6px;
+           left:5px;
+         }
+         > .pull-left {
+           padding: 5px 0;
+           > .seckill-icon {
+             background-image: url(../img/seckill-icon.png);
+             width: 20px;
+             height: 25px;
+             background-size:20px 25px;
+             float: left;
+           }
+           > .seckill-name {
+             float:left;
+             font-size:14px;
+             color: #d8505c;
+             margin:2px 0px 0px 14px;
+           }
+           > .seckill-time {
+             display: inline-block;
+             margin:4px 0px 0px 10px;
+             > span {
+                background-color: #000;
+                color:#fff;
+                padding:3px;
+                margin-left:2px;
+                text-align: center;
+             }
+             > span:nth-child(3n){
+               color:#333;
+               background-color: #fff;
+             }
+           }
+         }
+         > .pull-right {
+           > .seckill-more {
+              display: block;
+              margin-top:5px;
+              margin-right:10px;
+              font-size:14px;
+           }
+         }
+       }
+       > .product-content{
+          > ul > li{
+            width:33.3%;
+            float:left;
+            border-left:1px solid #ccc;
+            > img {
+              width:64%;
+              display: block;
+              margin:0 auto;
+            }
+            > p {
+              text-align: center;
+              font-size:12px;
+            }
+            > p:first-of-type{
+              color:#e92322;
+            }
+            >p:last-of-type {
+              text-decoration: line-through;
+            }
+          }
+         > ul > li:first-child{
+           border-left:0;
+         }
+       }
+     }
+  }
+}
